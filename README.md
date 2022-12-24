@@ -11,4 +11,10 @@ A benchmarking program in Golang to compare various HTTP Client APIs for GoLang
 
 ✔️ Write benchmark for Golang's in-built http package
 
-❌ Write benchmark for gorrilla/http
+✔️ Write benchmark for req
+
+❌ Write benchmark for heimdall
+
+❌ Write benchmark for requests
+
+❌ Write benchmark for go-cleanhttp

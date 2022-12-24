@@ -8,23 +8,23 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func BenchmarkBaseHttpGet(b *testing.B) {
+func BenchmarkReqGet(b *testing.B) {
 
 	for n := 0; n < b.N; n++ {
 		for _, url := range util.UrlList {
-			msg := BaseHttpGet(url)
+			msg := ReqGet(url)
 			logrus.Debug(msg)
 		}
 	}
 }
 
-func BenchmarkBaseHttpGetConcurrent(b *testing.B) {
+func BenchmarkReqGetConcurrent(b *testing.B) {
 	for n := 0;n < b.N;n ++ {
 
 		ch := make(chan string)
 
 		for _, url := range util.UrlList {
-			go BaseHttpGetConcurrent(url, ch)
+			go ReqGetConcurrent(url, ch)
 		}
 
 		for range util.UrlList {
@@ -34,27 +34,10 @@ func BenchmarkBaseHttpGetConcurrent(b *testing.B) {
 	}
 }
 
-func TestBaseHttpGet(t *testing.T) {
+func TestReqGet(t *testing.T) {
 
 	for _, url := range util.UrlList {
-		msg := BaseHttpGet(url)
-		logrus.Debug(msg)
-		if !strings.Contains(msg, "Success") {
-			t.Error(msg)
-		}
-	}
-}
-
-func TestBaseHttpGetConcurrent(t *testing.T) {
-
-	ch := make(chan string)
-
-	for _, url := range util.UrlList {
-		go BaseHttpGetConcurrent(url, ch)
-	}
-
-	for range util.UrlList {
-		msg := <-ch
+		msg := ReqGet(url)
 		logrus.Debug(msg)
 		if !strings.Contains(msg, "Success") {
 			t.Error(msg)
