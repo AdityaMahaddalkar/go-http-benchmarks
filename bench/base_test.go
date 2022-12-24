@@ -18,7 +18,7 @@ func BenchmarkBaseHttpGet(b *testing.B) {
 	}
 }
 
-func BenchmarkTestBaseHttpGetConcurren(b *testing.B) {
+func BenchmarkBaseHttpGetConcurrent(b *testing.B) {
 	for n := 0;n < b.N;n ++ {
 
 		ch := make(chan string)
