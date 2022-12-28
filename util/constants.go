@@ -17,6 +17,5 @@ var (
 		"https://wikipedia.org",
 		"https://ebay.co.uk",
 		"https://live.com",
-		"https://reddit.com",
 	}
 )
